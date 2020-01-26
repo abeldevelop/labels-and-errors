@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.abeldevelop.architecture</groupId>
+        <artifactId>parent-pom</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>com.abeldevelop.architecture.service</groupId>
+    <artifactId>labels-and-errors</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    
+    <name>labels-and-errors</name>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.abeldevelop.architecture.service</groupId>
+				<artifactId>labels-and-errors-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.abeldevelop.architecture.service</groupId>
+				<artifactId>labels-and-errors-repository</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.abeldevelop.architecture.service</groupId>
+				<artifactId>labels-and-errors-dto</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.abeldevelop.architecture.service</groupId>
+				<artifactId>labels-and-errors-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.abeldevelop.architecture.service</groupId>
+				<artifactId>labels-and-errors-client</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.abeldevelop.architecture.service</groupId>
+				<artifactId>labels-and-errors-service</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+  <modules>
+    <module>labels-and-errors-model</module>
+    <module>labels-and-errors-repository</module>
+    <module>labels-and-errors-dto</module>
+    <module>labels-and-errors-api</module>
+    <module>labels-and-errors-client</module>
+    <module>labels-and-errors-service</module>
+  </modules>
+</project>

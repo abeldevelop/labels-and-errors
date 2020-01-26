@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.abeldevelop.architecture.service</groupId>
+		<artifactId>labels-and-errors</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>labels-and-errors-service</artifactId>
+
+	<name>labels-and-errors-service</name>
+	<description></description>
+
+	<dependencies>
+		<!-- OWN PROJECT DEPENDECIES -->
+		<dependency>
+			<groupId>com.abeldevelop.architecture.service</groupId>
+			<artifactId>labels-and-errors-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.abeldevelop.architecture.service</groupId>
+			<artifactId>labels-and-errors-repository</artifactId>
+		</dependency>
+
+		<!-- ABELDEVELOP DEPENDECIES -->
+		<dependency>
+			<groupId>com.abeldevelop.architecture.starter</groupId>
+			<artifactId>service-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.abeldevelop.architecture.starter</groupId>
+			<artifactId>test-starter</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
