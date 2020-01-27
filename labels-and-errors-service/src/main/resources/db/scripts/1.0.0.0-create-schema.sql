@@ -1,0 +1,1 @@
+CREATE SCHEMA IF NOT EXISTS labels_and_errors_db;
