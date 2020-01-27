@@ -1,7 +1,6 @@
 package com.abeldevelop.architecture.service.labelsanderrors.api.v1;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +39,7 @@ public interface ErrorMessageApi {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ErrorMessageResponseResource> executeCreate(@ApiParam(name="errorMessage", value="Error Message to create", required = true) @RequestBody CreateErrorMessageRequestResource createErrorMessageRequestResource);
+    public ErrorMessageResponseResource executeCreate(@ApiParam(name="errorMessage", value="Error Message to create", required = true) @RequestBody CreateErrorMessageRequestResource createErrorMessageRequestResource);
 
     @ApiOperation(value = "Update error message")
     @ApiResponses({ 
@@ -51,7 +50,7 @@ public interface ErrorMessageApi {
     })
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ErrorMessageResponseResource> executeUpdate(
+    public ErrorMessageResponseResource executeUpdate(
             @ApiParam(name="id", value="ID of the error message", required = true, example="1") @PathVariable("id") Long id,
             @ApiParam(name="category", value="Error Message to updated", required = true) @RequestBody UpdateErrorMessageRequestResource updateErrorMessageRequestResource);
     
@@ -75,7 +74,7 @@ public interface ErrorMessageApi {
     })
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<ErrorMessageResponseResource> executeFindById(@ApiParam(name="id", value="ID of the error message", required = true, example="1") @PathVariable("id") Long id);
+    public ErrorMessageResponseResource executeFindById(@ApiParam(name="id", value="ID of the error message", required = true, example="1") @PathVariable("id") Long id);
     
     @ApiOperation(value = "Find error messages by params")
     @ApiImplicitParams({
@@ -91,7 +90,7 @@ public interface ErrorMessageApi {
     })
     @GetMapping("/find-one")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ErrorMessageResponseResource> executeFindOne(
+    public ErrorMessageResponseResource executeFindOne(
             @RequestParam(name = "service-name", required = false) String serviceName, 
             @RequestParam(name = "language-code", required = false) String languageCode, 
             @RequestParam(name = "code", required = false) String code);
@@ -113,7 +112,7 @@ public interface ErrorMessageApi {
     })
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<ErrorMessagePaginationResponseResource> executeFindAll(
+    public ErrorMessagePaginationResponseResource executeFindAll(
             @RequestParam(name = "page", required = false) Integer page, 
             @RequestParam(name = "size", required = false) Integer size, 
             @RequestParam(name = "sort", required = false) ErrorMessageSort sort,
