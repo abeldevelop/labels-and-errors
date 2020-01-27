@@ -49,8 +49,8 @@ public class ErrorMessageResponseResource {
     @Size(min = ErrorMessageFieldsSizeConstants.MESSAGE_MIN_SIZE, max = ErrorMessageFieldsSizeConstants.MESSAGE_MAX_SIZE)
     private String message;
     
-    @ApiModelProperty(notes="Audit resource", required = true, position = 5)
+    @ApiModelProperty(notes="Version of resource", example="1", required = true, position = 5)
     @NotNull
-    private AuditResponseResource audit;
+    private Integer version;
     
 }
