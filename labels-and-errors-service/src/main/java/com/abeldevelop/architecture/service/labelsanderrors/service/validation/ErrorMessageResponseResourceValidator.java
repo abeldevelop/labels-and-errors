@@ -46,7 +46,7 @@ public class ErrorMessageResponseResourceValidator implements ValidationResource
 		if(StringUtils.isEmpty(errorMessageResponseResource.getServiceName())) {
 			throw new ValidationResponseException(errorCodeProperties.getErrorMessageServiceNameNotNull());
 		}
-		if(StringUtils.isSizeBetween(errorMessageResponseResource.getServiceName(), ErrorMessageFieldsSizeConstants.SERVICE_NAME_MIN_SIZE, ErrorMessageFieldsSizeConstants.SERVICE_NAME_MAX_SIZE)) {
+		if(!StringUtils.isSizeBetween(errorMessageResponseResource.getServiceName(), ErrorMessageFieldsSizeConstants.SERVICE_NAME_MIN_SIZE, ErrorMessageFieldsSizeConstants.SERVICE_NAME_MAX_SIZE)) {
 			throw new ValidationResponseException(errorCodeProperties.getErrorMessageServiceNameSize());
 		}
 	}
@@ -55,7 +55,7 @@ public class ErrorMessageResponseResourceValidator implements ValidationResource
 		if(StringUtils.isEmpty(errorMessageResponseResource.getLanguageCode())) {
 			throw new ValidationResponseException(errorCodeProperties.getErrorMessageLanguageCodeNotNull());
 		}
-		if(StringUtils.isSizeBetween(errorMessageResponseResource.getLanguageCode(), ErrorMessageFieldsSizeConstants.LANGUAGE_CODE_MIN_SIZE, ErrorMessageFieldsSizeConstants.LANGUAGE_CODE_MAX_SIZE)) {
+		if(!StringUtils.isSizeBetween(errorMessageResponseResource.getLanguageCode(), ErrorMessageFieldsSizeConstants.LANGUAGE_CODE_MIN_SIZE, ErrorMessageFieldsSizeConstants.LANGUAGE_CODE_MAX_SIZE)) {
 			throw new ValidationResponseException(errorCodeProperties.getErrorMessageLanguageCodeSize());
 		}
 	}
@@ -64,7 +64,7 @@ public class ErrorMessageResponseResourceValidator implements ValidationResource
 		if(StringUtils.isEmpty(errorMessageResponseResource.getCode())) {
 			throw new ValidationResponseException(errorCodeProperties.getErrorMessageCodeNotNull());
 		}
-		if(StringUtils.isSizeBetween(errorMessageResponseResource.getCode(), ErrorMessageFieldsSizeConstants.CODE_MIN_SIZE, ErrorMessageFieldsSizeConstants.CODE_MAX_SIZE)) {
+		if(!StringUtils.isSizeBetween(errorMessageResponseResource.getCode(), ErrorMessageFieldsSizeConstants.CODE_MIN_SIZE, ErrorMessageFieldsSizeConstants.CODE_MAX_SIZE)) {
 			throw new ValidationResponseException(errorCodeProperties.getErrorMessageCodeSize());
 		}
 	}
@@ -73,7 +73,7 @@ public class ErrorMessageResponseResourceValidator implements ValidationResource
 		if(StringUtils.isEmpty(errorMessageResponseResource.getMessage())) {
 			throw new ValidationResponseException(errorCodeProperties.getErrorMessageMessageNotNull());
 		}
-		if(StringUtils.isSizeBetween(errorMessageResponseResource.getMessage(), ErrorMessageFieldsSizeConstants.MESSAGE_MIN_SIZE, ErrorMessageFieldsSizeConstants.MESSAGE_MAX_SIZE)) {
+		if(!StringUtils.isSizeBetween(errorMessageResponseResource.getMessage(), ErrorMessageFieldsSizeConstants.MESSAGE_MIN_SIZE, ErrorMessageFieldsSizeConstants.MESSAGE_MAX_SIZE)) {
 			throw new ValidationResponseException(errorCodeProperties.getErrorMessageMessageSize());
 		}
 	}

@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 public class ErrorMessagePaginationResponseResourceValidator implements ValidationResource {
 
 	private final ErrorCodeProperties errorCodeProperties;
-	private final ValidationFactory validationFactory;
+	//private final ValidationFactory validationFactory;
 	
 	@Override
 	public boolean areYouTheElement(String elementName) {
@@ -33,14 +33,14 @@ public class ErrorMessagePaginationResponseResourceValidator implements Validati
 	}
 
 	private void validatePagination(ErrorMessagePaginationResponseResource errorMessagePaginationResponseResource) {
-		validationFactory.validate(errorMessagePaginationResponseResource.getPagination());
+		//validationFactory.validate(errorMessagePaginationResponseResource.getPagination());
 	}
 	
 	private void validateErrorMessages(ErrorMessagePaginationResponseResource errorMessagePaginationResponseResource) {
 		if(errorMessagePaginationResponseResource.getErrorMessages() == null) {
 			throw new ValidationResponseException(errorCodeProperties.getErrorMessagePaginationResponseResourceErrorMessagesNotNull());
 		}
-		errorMessagePaginationResponseResource.getErrorMessages().stream().forEach(validationFactory::validate);
+		//errorMessagePaginationResponseResource.getErrorMessages().stream().forEach(validationFactory::validate);
 	}
 	
 }
