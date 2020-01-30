@@ -9,6 +9,8 @@ import com.abeldevelop.architecture.service.labelsanderrors.dto.errormessage.Err
 import com.abeldevelop.architecture.service.labelsanderrors.dto.errormessage.ErrorMessageResponseResource;
 import com.abeldevelop.architecture.service.labelsanderrors.dto.errormessage.ErrorMessageSort;
 import com.abeldevelop.architecture.service.labelsanderrors.dto.errormessage.UpdateErrorMessageRequestResource;
+import com.abeldevelop.architecture.service.labelsanderrors.service.mapper.ErrorMessageMapper;
+import com.abeldevelop.architecture.service.labelsanderrors.service.service.v1.CreateErrorMessageService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,13 +21,17 @@ import lombok.extern.slf4j.Slf4j;
 public class ErrorMessageController implements ErrorMessageApi {
 
 	private final ValidationFactory validationFactory;
+	private final ErrorMessageMapper errorMessageMapper;
+	private final CreateErrorMessageService createErrorMessageService;
 	
 	@Override
 	public ErrorMessageResponseResource executeCreate(CreateErrorMessageRequestResource createErrorMessageRequestResource) {
 		log.info("ErrorMessageController.executeCreate Data IN => createErrorMessageRequestResource: {}", createErrorMessageRequestResource);
 		validationFactory.validate(createErrorMessageRequestResource);
 		
-		ErrorMessageResponseResource response = null; //TODO Call service
+		ErrorMessageResponseResource response = errorMessageMapper.mapDomainToResource(
+				createErrorMessageService.executeCreate(
+						errorMessageMapper.mapResourceToDomain(createErrorMessageRequestResource)));
 		
 		validationFactory.validate(response);
 		log.info("ErrorMessageController.executeCreate Data OUT => response: {}", response);

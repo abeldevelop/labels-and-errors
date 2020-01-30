@@ -28,4 +28,7 @@ public class ErrorCodeProperties {
 	private String errorMessageMessageSize;
 	private String errorMessageVersionNotNull;
 	private String errorMessagePaginationResponseResourceErrorMessagesNotNull;
+	
+	
+	private String errorMessageWithServiceNameAndCodeAndLanguageCodeExist;
 }
