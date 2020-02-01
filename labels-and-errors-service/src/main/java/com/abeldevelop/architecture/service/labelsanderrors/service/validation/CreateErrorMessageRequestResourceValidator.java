@@ -24,9 +24,6 @@ public class CreateErrorMessageRequestResourceValidator implements ValidationRes
 
 	@Override
 	public void validate(Object toValidate) {
-		if (toValidate == null) {
-			throw new ValidationRequestException(errorCodeProperties.getCreateErrorMessageRequestResourceNotNull());
-		}
 		CreateErrorMessageRequestResource createErrorMessageRequestResource = (CreateErrorMessageRequestResource) toValidate;
 		validateServiceName(createErrorMessageRequestResource);
 		validateLanguageCode(createErrorMessageRequestResource);

@@ -24,9 +24,6 @@ public class ErrorMessageResponseResourceValidator implements ValidationResource
 
 	@Override
 	public void validate(Object toValidate) {
-		if (toValidate == null) {
-			throw new ValidationResponseException(errorCodeProperties.getErrorMessageResponseResourceNotNull());
-		}
 		ErrorMessageResponseResource errorMessageResponseResource = (ErrorMessageResponseResource) toValidate;
 		validateId(errorMessageResponseResource);
 		validateServiceName(errorMessageResponseResource);

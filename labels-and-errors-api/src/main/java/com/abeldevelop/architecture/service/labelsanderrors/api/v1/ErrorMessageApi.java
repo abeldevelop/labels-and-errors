@@ -73,14 +73,14 @@ public interface ErrorMessageApi {
         @ApiResponse(code = 500, response = ErrorResponseResource.class, message = SpringFoxConstants.API_RESPONSE_CODE_500_MESSAGE)
     })
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseStatus(HttpStatus.OK)
     public ErrorMessageResponseResource executeFindById(@ApiParam(name="id", value="ID of the error message", required = true, example="1") @PathVariable("id") Long id);
     
     @ApiOperation(value = "Find error messages by params")
     @ApiImplicitParams({
-        @ApiImplicitParam(name = "service-name", value = "Part of service name to search", required = true, example="fir", dataType = "string", paramType = "query"),
-        @ApiImplicitParam(name = "language-code", value = "Part of language code to search", required = true, example="fir", dataType = "string", paramType = "query"),
-        @ApiImplicitParam(name = "code", value = "Part of code to search", required = true, example="fir", dataType = "string", paramType = "query")
+        @ApiImplicitParam(name = "service-name", value = "Service name to search", required = true, example="fir", dataType = "string", paramType = "query"),
+        @ApiImplicitParam(name = "language-code", value = "Language code to search", required = true, example="fir", dataType = "string", paramType = "query"),
+        @ApiImplicitParam(name = "code", value = "Code to search", required = true, example="fir", dataType = "string", paramType = "query")
     })
     @ApiResponses({ 
         @ApiResponse(code = 200, response = ErrorMessageResponseResource.class, message = SpringFoxConstants.API_RESPONSE_CODE_200_MESSAGE),
@@ -91,9 +91,9 @@ public interface ErrorMessageApi {
     @GetMapping("/find-one")
     @ResponseStatus(HttpStatus.OK)
     public ErrorMessageResponseResource executeFindOne(
-            @RequestParam(name = "service-name", required = false) String serviceName, 
-            @RequestParam(name = "language-code", required = false) String languageCode, 
-            @RequestParam(name = "code", required = false) String code);
+            @RequestParam(name = "service-name", required = true) String serviceName, 
+            @RequestParam(name = "language-code", required = true) String languageCode, 
+            @RequestParam(name = "code", required = true) String code);
     
     @ApiOperation(value = "Find all error messages")
     @ApiImplicitParams({

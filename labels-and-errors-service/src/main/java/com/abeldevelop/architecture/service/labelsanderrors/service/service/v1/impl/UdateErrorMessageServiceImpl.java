@@ -43,10 +43,10 @@ public class UdateErrorMessageServiceImpl extends CommonService implements Udate
     
     private ErrorMessageEntity checkIfErrorMessageExist(ErrorMessage errorMessage) {
     	Optional<ErrorMessageEntity> errorMessageEntity = errorMessageRepository.executeFindById(errorMessage.getId());
-        if(!errorMessageEntity.isPresent()) {
-            throw new NotFoundException(errorCodeProperties.getErrorMessageIdNotExist(), Arrays.asList(errorMessage.getId()));
-        }
-        return errorMessageEntity.get();
+    	if(!errorMessageEntity.isPresent()) {
+    		throw new NotFoundException(errorCodeProperties.getErrorMessageIdNotExist(), Arrays.asList(errorMessage.getId()));
+    	}
+    	return errorMessageEntity.get();
     }
     
     private void checkIfNewErrorMessageExist(ErrorMessage errorMessage) {
