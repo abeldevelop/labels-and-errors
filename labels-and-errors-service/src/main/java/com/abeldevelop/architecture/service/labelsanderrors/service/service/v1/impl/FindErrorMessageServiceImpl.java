@@ -35,6 +35,9 @@ public class FindErrorMessageServiceImpl implements FindErrorMessageService {
 	@Value("${abeldevelop.language.default}")
     private String defaultLanguage;
 	
+	@Value("${abeldevelop.serice-name.architecture}")
+	private String architectureService;
+	
 	private final ErrorMessageRepository errorMessageRepository;
 	private final ErrorCodeProperties errorCodeProperties;
 	private final ErrorMessageMapper errorMessageMapper;
@@ -54,16 +57,28 @@ public class FindErrorMessageServiceImpl implements FindErrorMessageService {
 	@Override
 	public ErrorMessage executeFindOne(String serviceName, String languageCode, String code) {
 		
-		Optional<ErrorMessageEntity> errorMessageEntity = findOne(serviceName, languageCode, code);
+		//Find the error message
+		Optional<ErrorMessageEntity> errorMessageEntity = findOneByServiceName(serviceName, languageCode, code);
+		
+		//If not exist search if is architecture error
 		if(!errorMessageEntity.isPresent()) {
-            errorMessageEntity = findOne(serviceName, defaultLanguage, code);
+			errorMessageEntity = findOneByServiceName(architectureService, languageCode, code);
         }
-        
+		
         if(!errorMessageEntity.isPresent()) {
-            throw new NotFoundException(errorCodeProperties.getErrorMessageWithRequestParametersNotFound());
+            throw new NotFoundException(errorCodeProperties.getErrorMessageWithRequestParametersNotFound(), Arrays.asList(code, serviceName, languageCode));
         }
         
         return errorMessageMapper.mapEntityToDomain(errorMessageEntity.get());
+	}
+	
+	private Optional<ErrorMessageEntity> findOneByServiceName(String serviceName, String languageCode, String code) {
+		Optional<ErrorMessageEntity> errorMessageEntity = findOne(serviceName, languageCode, code);
+		//Find by the default language
+		if(!errorMessageEntity.isPresent()) {
+            errorMessageEntity = findOne(serviceName, defaultLanguage, code);
+        }
+		return errorMessageEntity;
 	}
 
 	private Optional<ErrorMessageEntity> findOne(String serviceName, String languageCode, String code) {

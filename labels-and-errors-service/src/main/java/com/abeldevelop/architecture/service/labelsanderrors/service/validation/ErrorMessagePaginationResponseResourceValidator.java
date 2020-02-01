@@ -25,9 +25,6 @@ public class ErrorMessagePaginationResponseResourceValidator implements Validati
 
 	@Override
 	public void validate(Object toValidate) {
-		if (toValidate == null) {
-			throw new ValidationResponseException(errorCodeProperties.getErrorMessagePaginationResponseResourceNotNull());
-		}
 		ErrorMessagePaginationResponseResource errorMessagePaginationResponseResource = (ErrorMessagePaginationResponseResource) toValidate;
 		validatePagination(errorMessagePaginationResponseResource);
 		validateErrorMessages(errorMessagePaginationResponseResource);
