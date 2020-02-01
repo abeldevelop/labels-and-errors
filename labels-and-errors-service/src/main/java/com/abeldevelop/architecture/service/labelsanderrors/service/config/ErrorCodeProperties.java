@@ -12,11 +12,6 @@ import lombok.Setter;
 @ConfigurationProperties("labels-and-errors-error-code")
 public class ErrorCodeProperties {
 
-	private String createErrorMessageRequestResourceNotNull;
-	private String updateErrorMessageRequestResourceNotNull;
-	private String errorMessageResponseResourceNotNull;
-	private String errorMessagePaginationResponseResourceNotNull;
-	
 	private String errorMessageIdNotNull;
 	private String errorMessageServiceNameNotNull;
 	private String errorMessageServiceNameSize;
