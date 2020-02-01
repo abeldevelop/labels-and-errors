@@ -3,9 +3,6 @@ package com.abeldevelop.architecture.service.labelsanderrors.service.controller.
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,13 +12,10 @@ import org.springframework.test.context.ActiveProfiles;
 
 import com.abeldevelop.architecture.library.common.dto.exception.ErrorResponseResource;
 import com.abeldevelop.architecture.service.labelsanderrors.dto.errormessage.CreateErrorMessageRequestResource;
-import com.abeldevelop.architecture.service.labelsanderrors.dto.errormessage.ErrorMessageFieldsSizeConstants;
 import com.abeldevelop.architecture.service.labelsanderrors.dto.errormessage.ErrorMessageResponseResource;
 import com.abeldevelop.architecture.service.labelsanderrors.model.ErrorMessageEntity;
 import com.abeldevelop.architecture.service.labelsanderrors.repository.springdata.ErrorMessageSpringDataRepository;
 import com.abeldevelop.architecture.service.labelsanderrors.service.controller.CommonTestController;
-
-import io.swagger.annotations.ApiModelProperty;
 
 @ActiveProfiles("test")
 @SpringBootTest
