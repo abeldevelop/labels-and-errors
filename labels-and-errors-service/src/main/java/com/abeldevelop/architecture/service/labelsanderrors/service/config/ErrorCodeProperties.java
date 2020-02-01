@@ -31,4 +31,6 @@ public class ErrorCodeProperties {
 	
 	
 	private String errorMessageWithServiceNameAndCodeAndLanguageCodeExist;
+	private String errorMessageIdNotExist;
+
 }
