@@ -11,5 +11,6 @@ public class ErrorMessageEntity_ {
 	public static volatile SingularAttribute<ErrorMessageEntity, String> languageCode;
 	public static volatile SingularAttribute<ErrorMessageEntity, String> code;
 	public static volatile SingularAttribute<ErrorMessageEntity, String> message;
+	public static volatile SingularAttribute<ErrorMessageEntity, Integer> version;
 	
 }
