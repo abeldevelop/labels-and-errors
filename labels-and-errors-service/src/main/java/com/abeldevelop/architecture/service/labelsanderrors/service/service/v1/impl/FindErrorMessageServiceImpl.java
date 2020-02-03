@@ -35,9 +35,6 @@ public class FindErrorMessageServiceImpl implements FindErrorMessageService {
 	@Value("${abeldevelop.language.default}")
     private String defaultLanguage;
 	
-	@Value("${abeldevelop.serice-name.architecture}")
-	private String architectureService;
-	
 	private final ErrorMessageRepository errorMessageRepository;
 	private final ErrorCodeProperties errorCodeProperties;
 	private final ErrorMessageMapper errorMessageMapper;
@@ -55,14 +52,13 @@ public class FindErrorMessageServiceImpl implements FindErrorMessageService {
 	}
 
 	@Override
-	public ErrorMessage executeFindOne(String serviceName, String languageCode, String code) {
+	public ErrorMessage executeFindOne(List<String> usedLibraries, String serviceName, String languageCode, String code) {
 		
 		//Find the error message
 		Optional<ErrorMessageEntity> errorMessageEntity = findOneByServiceName(serviceName, languageCode, code);
 		
-		//If not exist search if is architecture error
 		if(!errorMessageEntity.isPresent()) {
-			errorMessageEntity = findOneByServiceName(architectureService, languageCode, code);
+			errorMessageEntity = findOneInLibraries(usedLibraries, languageCode, code);
         }
 		
         if(!errorMessageEntity.isPresent()) {
@@ -70,6 +66,16 @@ public class FindErrorMessageServiceImpl implements FindErrorMessageService {
         }
         
         return errorMessageMapper.mapEntityToDomain(errorMessageEntity.get());
+	}
+	
+	private Optional<ErrorMessageEntity> findOneInLibraries(List<String> usedLibraries, String languageCode, String code) {
+		Optional<ErrorMessageEntity> errorMessageEntity = Optional.empty();
+		int index = 0;
+		while(!errorMessageEntity.isPresent() && index < usedLibraries.size()) {
+			errorMessageEntity = findOneByServiceName(usedLibraries.get(index), languageCode, code);
+			index++;
+		}
+		return errorMessageEntity;
 	}
 	
 	private Optional<ErrorMessageEntity> findOneByServiceName(String serviceName, String languageCode, String code) {
@@ -112,7 +118,7 @@ public class FindErrorMessageServiceImpl implements FindErrorMessageService {
     }
 	
 	private Specification<ErrorMessageEntity> getSpecification(String serviceName, String languageCode, String code) {
-		List<Specification<ErrorMessageEntity>> specifications = new ArrayList<Specification<ErrorMessageEntity>>();
+		List<Specification<ErrorMessageEntity>> specifications = new ArrayList<>();
 		if(!StringUtils.isEmpty(serviceName)) {
 			specifications.add(errorMessageSpecification.serviceNameLike(serviceName));
 		}

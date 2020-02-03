@@ -4,10 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
@@ -34,6 +37,9 @@ public class FindErrorMessageControllerTest extends CommonTestController {
 	
 	@Autowired
 	private ErrorMessageSpringDataRepository errorMessageSpringDataRepository;
+	
+	@Value("${abeldevelop.used-libraries}")
+	private List<String> usedLibraries;
 	
 	@Test
 	public void test_findErrorMessageById_ko_notFound() throws Exception {
@@ -66,6 +72,11 @@ public class FindErrorMessageControllerTest extends CommonTestController {
 		errorMessageSpringDataRepository.deleteAll();
 		ErrorMessageEntity errorMessageEntity = errorMessageSpringDataRepository.save(ErrorMessageEntity.builder().serviceName(SERVICE_NAME_OK_VALUE).languageCode(LANGUAGE_CODE_OK_VALUE).code(CODE_OK_VALUE).message(MESSAGE_OK_VALUE).build());
 		Map<String, String> params = new HashMap<>();
+		StringJoiner joiner = new StringJoiner(",");
+		for(String usedLibrary : usedLibraries) {
+			joiner.add(usedLibrary);
+		}
+		params.put("used-libraries", joiner.toString());
 		params.put("service-name", SERVICE_NAME_OK_VALUE);
 		params.put("language-code", LANGUAGE_CODE_OK_VALUE);
 		params.put("code", CODE_OK_VALUE);
@@ -79,6 +90,11 @@ public class FindErrorMessageControllerTest extends CommonTestController {
 	public void test_findOneErrorMessage_ko() throws Exception {
 		errorMessageSpringDataRepository.deleteAll();
 		Map<String, String> params = new HashMap<>();
+		StringJoiner joiner = new StringJoiner(",");
+		for(String usedLibrary : usedLibraries) {
+			joiner.add(usedLibrary);
+		}
+		params.put("used-libraries", joiner.toString());
 		params.put("service-name", "a");
 		params.put("language-code", "a");
 		params.put("code", "a");

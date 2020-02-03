@@ -1,5 +1,6 @@
 package com.abeldevelop.architecture.service.labelsanderrors.service.controller.v1;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -87,10 +88,10 @@ public class ErrorMessageController implements ErrorMessageApi {
 	}
 
 	@Override
-	public ErrorMessageResponseResource executeFindOne(String serviceName, String languageCode, String code) {
+	public ErrorMessageResponseResource executeFindOne(List<String> usedLibraries, String serviceName, String languageCode, String code) {
 		log.info("ErrorMessageController.executeFindOne Data IN => serviceName: {}, languageCode: {}, code: {}", serviceName, languageCode, code);
 		
-		ErrorMessageResponseResource response = errorMessageMapper.mapDomainToResource(findErrorMessageService.executeFindOne(serviceName, languageCode, code));
+		ErrorMessageResponseResource response = errorMessageMapper.mapDomainToResource(findErrorMessageService.executeFindOne(usedLibraries, serviceName, languageCode, code));
 		
 		validationFactory.validate(response);
 		log.info("ErrorMessageController.executeFindOne Data OUT => response: {}", response);

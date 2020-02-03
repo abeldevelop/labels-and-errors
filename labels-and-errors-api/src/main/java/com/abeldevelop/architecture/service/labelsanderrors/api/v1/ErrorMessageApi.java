@@ -1,5 +1,7 @@
 package com.abeldevelop.architecture.service.labelsanderrors.api.v1;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -78,6 +80,7 @@ public interface ErrorMessageApi {
     
     @ApiOperation(value = "Find error messages by params")
     @ApiImplicitParams({
+    	@ApiImplicitParam(name = "used-libraries", value = "List of used libraries, separated by comma", required = true, example="architecture", dataType = "string", paramType = "query"),
         @ApiImplicitParam(name = "service-name", value = "Service name to search", required = true, example="fir", dataType = "string", paramType = "query"),
         @ApiImplicitParam(name = "language-code", value = "Language code to search", required = true, example="fir", dataType = "string", paramType = "query"),
         @ApiImplicitParam(name = "code", value = "Code to search", required = true, example="fir", dataType = "string", paramType = "query")
@@ -91,6 +94,7 @@ public interface ErrorMessageApi {
     @GetMapping("/find-one")
     @ResponseStatus(HttpStatus.OK)
     public ErrorMessageResponseResource executeFindOne(
+    		@RequestParam(name = "used-libraries", required = true) List<String> usedLibraries,
             @RequestParam(name = "service-name", required = true) String serviceName, 
             @RequestParam(name = "language-code", required = true) String languageCode, 
             @RequestParam(name = "code", required = true) String code);
