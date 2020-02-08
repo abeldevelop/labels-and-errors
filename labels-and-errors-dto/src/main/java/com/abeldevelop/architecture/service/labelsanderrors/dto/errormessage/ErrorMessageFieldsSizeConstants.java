@@ -13,7 +13,7 @@ public class ErrorMessageFieldsSizeConstants {
     public static final int LANGUAGE_CODE_MAX_SIZE = 5;
     
     public static final int CODE_MIN_SIZE = 5;
-    public static final int CODE_MAX_SIZE = 50;
+    public static final int CODE_MAX_SIZE = 100;
     
     public static final int MESSAGE_MIN_SIZE = 5;
     public static final int MESSAGE_MAX_SIZE = 255;

@@ -55,7 +55,6 @@
     <module>labels-and-errors-repository</module>
     <module>labels-and-errors-dto</module>
     <module>labels-and-errors-api</module>
-    <module>labels-and-errors-client</module>
     <module>labels-and-errors-service</module>
   </modules>
 </project>

@@ -33,7 +33,6 @@ public class CommonTestController {
 
 	@BeforeEach
 	public void setUp() {
-		System.out.println("AFG");
 	}
 	
 	public CommonTestController() {
