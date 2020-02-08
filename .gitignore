@@ -4,6 +4,9 @@ target/
 !**/src/main/**
 !**/src/test/**
 
+LOG_FILE_IS_UNDEFINED_*.json
+spring_boot_microservices_*.json
+
 ### STS ###
 .apt_generated
 .classpath
